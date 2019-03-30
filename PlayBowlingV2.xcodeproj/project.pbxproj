@@ -15,6 +15,10 @@
 		EF9850D9224F751400BE049B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF9850D8224F751400BE049B /* Assets.xcassets */; };
 		EF9850DC224F751400BE049B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9850DA224F751400BE049B /* LaunchScreen.storyboard */; };
 		EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E5224F794C00BE049B /* BowlingGame.swift */; };
+		EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */; };
+		EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EA224F88AF00BE049B /* FrameCell.swift */; };
+		EF9850F0224F924300BE049B /* BowlingGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */; };
+		EF9850F5224F9C3800BE049B /* Bowling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850F4224F9C3800BE049B /* Bowling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		EF9850DB224F751400BE049B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF9850DD224F751400BE049B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF9850E5224F794C00BE049B /* BowlingGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGame.swift; sourceTree = "<group>"; };
+		EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameModel.swift; sourceTree = "<group>"; };
+		EF9850EA224F88AF00BE049B /* FrameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCell.swift; sourceTree = "<group>"; };
+		EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameViewModel.swift; sourceTree = "<group>"; };
+		EF9850F4224F9C3800BE049B /* Bowling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +66,6 @@
 				EB87C9C74499406F60422C8B /* Pods-PlayBowlingV2.debug.xcconfig */,
 				7D2DD313C298E8D6632F5604 /* Pods-PlayBowlingV2.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,16 +90,52 @@
 		EF9850CD224F751300BE049B /* PlayBowlingV2 */ = {
 			isa = PBXGroup;
 			children = (
+				EF9850F1224F92F500BE049B /* ViewController */,
+				EF9850ED224F922B00BE049B /* ViewModel */,
+				EF9850EC224F922600BE049B /* Model */,
+				EF9850EE224F923000BE049B /* DataSource */,
 				EF9850CE224F751300BE049B /* AppDelegate.swift */,
-				EF9850D0224F751300BE049B /* ViewController.swift */,
 				EF9850D2224F751300BE049B /* Main.storyboard */,
 				EF9850D8224F751400BE049B /* Assets.xcassets */,
 				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
 				EF9850DD224F751400BE049B /* Info.plist */,
 				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
-				EF9850E5224F794C00BE049B /* BowlingGame.swift */,
+				EF9850EA224F88AF00BE049B /* FrameCell.swift */,
+				EF9850F4224F9C3800BE049B /* Bowling.swift */,
 			);
 			path = PlayBowlingV2;
+			sourceTree = "<group>";
+		};
+		EF9850EC224F922600BE049B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF9850ED224F922B00BE049B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EF9850EE224F923000BE049B /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850E5224F794C00BE049B /* BowlingGame.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		EF9850F1224F92F500BE049B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850D0224F751300BE049B /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,10 +262,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */,
+				EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */,
+				EF9850F5224F9C3800BE049B /* Bowling.swift in Sources */,
 				EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */,
 				EF9850D1224F751300BE049B /* ViewController.swift in Sources */,
 				EF9850CF224F751300BE049B /* AppDelegate.swift in Sources */,
 				EF9850D7224F751300BE049B /* PlayBowlingV2.xcdatamodeld in Sources */,
+				EF9850F0224F924300BE049B /* BowlingGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
