@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB33EFE6A20D7263CC682406 /* Pods_PlayBowlingV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E234359798628E53413E0133 /* Pods_PlayBowlingV2.framework */; };
+		44E6780E89CD88344D639E57 /* Pods_PlayBowlingV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863EA8836326145297571055 /* Pods_PlayBowlingV2.framework */; };
 		EF9850CF224F751300BE049B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850CE224F751300BE049B /* AppDelegate.swift */; };
 		EF9850D1224F751300BE049B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850D0224F751300BE049B /* ViewController.swift */; };
 		EF9850D4224F751300BE049B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9850D2224F751300BE049B /* Main.storyboard */; };
 		EF9850D7224F751300BE049B /* PlayBowlingV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */; };
 		EF9850D9224F751400BE049B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF9850D8224F751400BE049B /* Assets.xcassets */; };
 		EF9850DC224F751400BE049B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9850DA224F751400BE049B /* LaunchScreen.storyboard */; };
+		EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E5224F794C00BE049B /* BowlingGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B3498B03124F81B1961217A /* Pods-PlayBowlingV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBowlingV2.debug.xcconfig"; path = "Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2.debug.xcconfig"; sourceTree = "<group>"; };
-		7B3918263CAA678FD037794C /* Pods-PlayBowlingV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBowlingV2.release.xcconfig"; path = "Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2.release.xcconfig"; sourceTree = "<group>"; };
-		E234359798628E53413E0133 /* Pods_PlayBowlingV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayBowlingV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D2DD313C298E8D6632F5604 /* Pods-PlayBowlingV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBowlingV2.release.xcconfig"; path = "Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2.release.xcconfig"; sourceTree = "<group>"; };
+		863EA8836326145297571055 /* Pods_PlayBowlingV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayBowlingV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB87C9C74499406F60422C8B /* Pods-PlayBowlingV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBowlingV2.debug.xcconfig"; path = "Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2.debug.xcconfig"; sourceTree = "<group>"; };
 		EF9850CB224F751300BE049B /* PlayBowlingV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayBowlingV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9850CE224F751300BE049B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF9850D0224F751300BE049B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		EF9850D8224F751400BE049B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF9850DB224F751400BE049B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF9850DD224F751400BE049B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF9850E5224F794C00BE049B /* BowlingGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,26 +37,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB33EFE6A20D7263CC682406 /* Pods_PlayBowlingV2.framework in Frameworks */,
+				44E6780E89CD88344D639E57 /* Pods_PlayBowlingV2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4AE0E8D6B5ED9E81B3FD40B4 /* Frameworks */ = {
+		30795B9C9A0233ADA5D78149 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E234359798628E53413E0133 /* Pods_PlayBowlingV2.framework */,
+				863EA8836326145297571055 /* Pods_PlayBowlingV2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9B22146EA0DBCC3AF5BC2E2B /* Pods */ = {
+		A90B1CF2782B54C34806AF0B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B3498B03124F81B1961217A /* Pods-PlayBowlingV2.debug.xcconfig */,
-				7B3918263CAA678FD037794C /* Pods-PlayBowlingV2.release.xcconfig */,
+				EB87C9C74499406F60422C8B /* Pods-PlayBowlingV2.debug.xcconfig */,
+				7D2DD313C298E8D6632F5604 /* Pods-PlayBowlingV2.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -65,8 +67,8 @@
 			children = (
 				EF9850CD224F751300BE049B /* PlayBowlingV2 */,
 				EF9850CC224F751300BE049B /* Products */,
-				9B22146EA0DBCC3AF5BC2E2B /* Pods */,
-				4AE0E8D6B5ED9E81B3FD40B4 /* Frameworks */,
+				A90B1CF2782B54C34806AF0B /* Pods */,
+				30795B9C9A0233ADA5D78149 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +90,7 @@
 				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
 				EF9850DD224F751400BE049B /* Info.plist */,
 				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
+				EF9850E5224F794C00BE049B /* BowlingGame.swift */,
 			);
 			path = PlayBowlingV2;
 			sourceTree = "<group>";
@@ -99,11 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF9850E0224F751400BE049B /* Build configuration list for PBXNativeTarget "PlayBowlingV2" */;
 			buildPhases = (
-				DF36FDCD12EE3C4005837F75 /* [CP] Check Pods Manifest.lock */,
+				8CA7305EC607CD5210FA05B5 /* [CP] Check Pods Manifest.lock */,
 				EF9850C7224F751300BE049B /* Sources */,
 				EF9850C8224F751300BE049B /* Frameworks */,
 				EF9850C9224F751300BE049B /* Resources */,
-				EA26233AAB880C7E3A207238 /* [CP] Embed Pods Frameworks */,
+				7FFB0F304E69D0A28C625990 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,29 +164,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DF36FDCD12EE3C4005837F75 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PlayBowlingV2-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA26233AAB880C7E3A207238 /* [CP] Embed Pods Frameworks */ = {
+		7FFB0F304E69D0A28C625990 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -209,6 +190,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8CA7305EC607CD5210FA05B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlayBowlingV2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */,
 				EF9850D1224F751300BE049B /* ViewController.swift in Sources */,
 				EF9850CF224F751300BE049B /* AppDelegate.swift in Sources */,
 				EF9850D7224F751300BE049B /* PlayBowlingV2.xcdatamodeld in Sources */,
@@ -362,7 +366,7 @@
 		};
 		EF9850E1224F751400BE049B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B3498B03124F81B1961217A /* Pods-PlayBowlingV2.debug.xcconfig */;
+			baseConfigurationReference = EB87C9C74499406F60422C8B /* Pods-PlayBowlingV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -381,7 +385,7 @@
 		};
 		EF9850E2224F751400BE049B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B3918263CAA678FD037794C /* Pods-PlayBowlingV2.release.xcconfig */;
+			baseConfigurationReference = 7D2DD313C298E8D6632F5604 /* Pods-PlayBowlingV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
