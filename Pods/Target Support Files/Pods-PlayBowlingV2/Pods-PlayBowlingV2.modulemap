@@ -1,0 +1,6 @@
+framework module Pods_PlayBowlingV2 {
+  umbrella header "Pods-PlayBowlingV2-umbrella.h"
+
+  export *
+  module * { export * }
+}
