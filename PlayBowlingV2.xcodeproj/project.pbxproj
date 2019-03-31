@@ -18,7 +18,6 @@
 		EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */; };
 		EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EA224F88AF00BE049B /* FrameCell.swift */; };
 		EF9850F0224F924300BE049B /* BowlingGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */; };
-		EF9850F5224F9C3800BE049B /* Bowling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850F4224F9C3800BE049B /* Bowling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameModel.swift; sourceTree = "<group>"; };
 		EF9850EA224F88AF00BE049B /* FrameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCell.swift; sourceTree = "<group>"; };
 		EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameViewModel.swift; sourceTree = "<group>"; };
-		EF9850F4224F9C3800BE049B /* Bowling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +99,6 @@
 				EF9850DD224F751400BE049B /* Info.plist */,
 				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
 				EF9850EA224F88AF00BE049B /* FrameCell.swift */,
-				EF9850F4224F9C3800BE049B /* Bowling.swift */,
 			);
 			path = PlayBowlingV2;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 			files = (
 				EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */,
 				EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */,
-				EF9850F5224F9C3800BE049B /* Bowling.swift in Sources */,
 				EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */,
 				EF9850D1224F751300BE049B /* ViewController.swift in Sources */,
 				EF9850CF224F751300BE049B /* AppDelegate.swift in Sources */,

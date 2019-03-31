@@ -22,73 +22,107 @@ class BowlingGame{
         currentFrame = bowlingGameModel.standardFrame
     }
     
+    func finishGame(){
+        bowlingGameModel.frameCount = bowlingGameModel.totalFrames + 1
+        print("Game Finished")
+    }
+    
     func rollBall() {
         if (bowlingGameModel.frameCount < bowlingGameModel.totalFrames-1) {
-            if (!firstThrow){
-                rollTwo = Int.random(in: 0...(10-rollOne))
-                rollTwo = 10-rollOne
-                print(rollTwo)
-                calculateScore()
-                cleanUpRolls()
-                bowlingGameModel.frameCount += 1
-                cleanUpRolls()
-                firstThrow = true
-            } else {
-                rollOne = Int.random(in: 0...10)
-                print(rollOne)
-                calculateScore()
-                if (rollOne == 10){
-                    firstThrow = true
-                    bowlingGameModel.frameCount += 1
-                    cleanUpRolls()
-                } else {
-                    firstThrow = false
-                }
-            }
+            rollBallStandardFrame()
         } else {
-            if (bowlingGameModel.rollCount < bowlingGameModel.tenthFrameMaxRolls){
-                switch (bowlingGameModel.rollCount){
-                case 0:
-                    rollOne = Int.random(in: 0...10)
-                    print(rollOne)
-                    bowlingGameModel.rollCount += 1
-                    break
-                case 1:
-                    if (rollOne < 10){
-                        rollTwo = Int.random(in: 0...(10-rollOne))
-                    } else {
-                        rollTwo = Int.random(in: 0...10)
-                    }
-                    print(rollTwo)
-                    bowlingGameModel.rollCount += 1
-                    if (rollOne != 10){
-                        if (rollTwo + rollOne < 10){
-                            bowlingGameModel.rollCount += 1
-                        }
-                    }
-                    break
-                case 2:
-                    if (rollTwo < 10){
-                        rollThree = Int.random(in: 0...(10-rollTwo))
-                    } else {
-                        rollThree = Int.random(in: 0...10)
-                    }
-                    print(rollThree)
-                    bowlingGameModel.rollCount += 1
-                    break
-                default:
-                    break
-                }
-            } else {
-                calculateScore()
-                print("GameFinished")
-            }
+            rollBallTenthFrame()
         }
     }
     
     func cleanUpRolls(){
         rollOne = 0
         rollTwo = 0
+        rollThree = 0
+    }
+    
+    func specialThrowConditionStandardFrame(){
+        if (rollOne == 10){
+            bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+        } else if ((rollOne + rollTwo == 10) && rollOne != 10){
+            bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
+        }
+    }
+    
+    func rollBallStandardFrame(){
+        if (!firstThrow){
+            rollTwo = Int.random(in: 0...(10-rollOne))
+            rollTwo = 10-rollOne
+            specialThrowConditionStandardFrame()
+            calculateScore()
+            cleanUpRolls()
+            bowlingGameModel.frameCount += 1
+            cleanUpRolls()
+            firstThrow = true
+        } else {
+            rollOne = Int.random(in: 0...10)
+            specialThrowConditionStandardFrame()
+            calculateScore()
+            if (rollOne == 10){
+                firstThrow = true
+                bowlingGameModel.frameCount += 1
+                cleanUpRolls()
+            } else {
+                firstThrow = false
+            }
+        }
+    }
+    
+    func rollBallTenthFrame(){
+        if (bowlingGameModel.rollCount < bowlingGameModel.tenthFrameMaxRolls){
+            switch (bowlingGameModel.rollCount){
+            case 0:
+                rollOne = Int.random(in: 0...10)
+                print(rollOne)
+                if (rollOne == 10){
+                    bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                }
+                bowlingGameModel.rollCount += 1
+                break
+            case 1:
+                if (rollOne < 10){
+                    rollTwo = Int.random(in: 1...(10-rollOne))
+                } else {
+                    rollTwo = Int.random(in: 0...10)
+                }
+                if (rollOne + rollTwo == 10 && rollOne != 10){
+                    bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
+                } else if (rollTwo == 10 && rollOne == 10){
+                    bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                }
+                bowlingGameModel.rollCount += 1
+                if (rollOne != 10){
+                    if (rollTwo + rollOne < 10){
+                        bowlingGameModel.rollCount += 1
+                    }
+                }
+                break
+            case 2:
+                if (rollTwo < 10){
+                    rollThree = Int.random(in: 0...(10-rollTwo))
+                } else {
+                    rollThree = Int.random(in: 0...10)
+                }
+                if (rollTwo + rollThree == 10 && rollTwo != 10){
+                    bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
+                } else if (rollThree == 10 && rollTwo == 10){
+                    bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                }
+                bowlingGameModel.rollCount += 1
+                break
+            default:
+                break
+            }
+        } else {
+            calculateScore()
+            finishGame()
+        }
+
     }
     
     func calculateScore() {

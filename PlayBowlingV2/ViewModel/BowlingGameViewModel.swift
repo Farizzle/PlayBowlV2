@@ -16,12 +16,16 @@ class BowlingGameViewModel: NSObject {
         bowlingGameModel = withBowlingGame.bowlingGameModel
     }
     
-    func calculateFrameScore() -> Int {
-        guard let frameRollOne = bowlingGameModel.rolls[safe: bowlingGameModel.rollCount-1] else { return 0 }
-        guard let frameRollTwo = bowlingGameModel.rolls.last else { return 0 }
-        return frameRollOne! + frameRollTwo!
+    func getTotalScore() -> Int {
+        guard let finalFrameScore = bowlingGameModel.frames.last?.last else {
+            print("Game not finished")
+            return 0
+        }
+        return finalFrameScore
     }
     
-    
+    func getCurrentScoreBoard() -> [[Int]] {
+        return bowlingGameModel.frames
+    }
     
 }
