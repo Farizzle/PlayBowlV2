@@ -13,7 +13,7 @@ class BowlingGameModel {
     var frameCount = 0
     
     let totalFrames = 10
-    let maxRolls = 21
+    let tenthFrameMaxRolls = 3
     
     var framesSubject = PublishSubject<[[Int]]>()
     var rolls = [Int?]()
