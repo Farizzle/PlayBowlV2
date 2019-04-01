@@ -16,8 +16,9 @@
 		EF9850DC224F751400BE049B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF9850DA224F751400BE049B /* LaunchScreen.storyboard */; };
 		EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E5224F794C00BE049B /* BowlingGame.swift */; };
 		EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */; };
-		EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EA224F88AF00BE049B /* FrameCell.swift */; };
 		EF9850F0224F924300BE049B /* BowlingGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */; };
+		EF9850FA22514B4700BE049B /* StandardFrameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850F922514B4700BE049B /* StandardFrameCell.swift */; };
+		EF9850FC225152A400BE049B /* TenthFrameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9850FB225152A400BE049B /* TenthFrameCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +35,9 @@
 		EF9850DD224F751400BE049B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF9850E5224F794C00BE049B /* BowlingGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGame.swift; sourceTree = "<group>"; };
 		EF9850E7224F7EE700BE049B /* BowlingGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameModel.swift; sourceTree = "<group>"; };
-		EF9850EA224F88AF00BE049B /* FrameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCell.swift; sourceTree = "<group>"; };
 		EF9850EF224F924300BE049B /* BowlingGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameViewModel.swift; sourceTree = "<group>"; };
+		EF9850F922514B4700BE049B /* StandardFrameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardFrameCell.swift; sourceTree = "<group>"; };
+		EF9850FB225152A400BE049B /* TenthFrameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenthFrameCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,17 +90,13 @@
 		EF9850CD224F751300BE049B /* PlayBowlingV2 */ = {
 			isa = PBXGroup;
 			children = (
+				EF9850F822514B1700BE049B /* Additional */,
+				EF9850F722514B0700BE049B /* User Interface */,
+				EF9850F622514AEF00BE049B /* Core */,
 				EF9850F1224F92F500BE049B /* ViewController */,
 				EF9850ED224F922B00BE049B /* ViewModel */,
 				EF9850EC224F922600BE049B /* Model */,
 				EF9850EE224F923000BE049B /* DataSource */,
-				EF9850CE224F751300BE049B /* AppDelegate.swift */,
-				EF9850D2224F751300BE049B /* Main.storyboard */,
-				EF9850D8224F751400BE049B /* Assets.xcassets */,
-				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
-				EF9850DD224F751400BE049B /* Info.plist */,
-				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
-				EF9850EA224F88AF00BE049B /* FrameCell.swift */,
 			);
 			path = PlayBowlingV2;
 			sourceTree = "<group>";
@@ -133,6 +131,35 @@
 				EF9850D0224F751300BE049B /* ViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EF9850F622514AEF00BE049B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
+				EF9850CE224F751300BE049B /* AppDelegate.swift */,
+				EF9850DD224F751400BE049B /* Info.plist */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		EF9850F722514B0700BE049B /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
+				EF9850D2224F751300BE049B /* Main.storyboard */,
+				EF9850F922514B4700BE049B /* StandardFrameCell.swift */,
+				EF9850FB225152A400BE049B /* TenthFrameCell.swift */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		EF9850F822514B1700BE049B /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850D8224F751400BE049B /* Assets.xcassets */,
+			);
+			path = Additional;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,10 +287,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF9850E8224F7EE700BE049B /* BowlingGameModel.swift in Sources */,
-				EF9850EB224F88AF00BE049B /* FrameCell.swift in Sources */,
 				EF9850E6224F794C00BE049B /* BowlingGame.swift in Sources */,
 				EF9850D1224F751300BE049B /* ViewController.swift in Sources */,
 				EF9850CF224F751300BE049B /* AppDelegate.swift in Sources */,
+				EF9850FA22514B4700BE049B /* StandardFrameCell.swift in Sources */,
+				EF9850FC225152A400BE049B /* TenthFrameCell.swift in Sources */,
 				EF9850D7224F751300BE049B /* PlayBowlingV2.xcdatamodeld in Sources */,
 				EF9850F0224F924300BE049B /* BowlingGameViewModel.swift in Sources */,
 			);
@@ -414,7 +442,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P27A23S3XE;
-				INFOPLIST_FILE = PlayBowlingV2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PlayBowlingV2/Core/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,7 +461,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P27A23S3XE;
-				INFOPLIST_FILE = PlayBowlingV2/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PlayBowlingV2/Core/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
