@@ -52,7 +52,6 @@ class BowlingGame{
     func rollBallStandardFrame(){
         if (!firstThrow){
             rollTwo = Int.random(in: 0...(10-rollOne))
-            rollTwo = 10-rollOne
             specialThrowConditionStandardFrame()
             calculateScore()
             cleanUpRolls()
@@ -82,12 +81,12 @@ class BowlingGame{
                 if (rollOne == 10){
                     bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
                 }
-//                scoreForTenthFrame()
+                calculateScore()
                 bowlingGameModel.rollCount += 1
                 break
             case 1:
                 if (rollOne < 10){
-                    rollTwo = Int.random(in: 1...(10-rollOne))
+                    rollTwo = Int.random(in: 0...(10-rollOne))
                 } else {
                     rollTwo = Int.random(in: 0...10)
                 }
@@ -96,7 +95,7 @@ class BowlingGame{
                 } else if (rollTwo == 10 && rollOne == 10){
                     bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
                 }
-//                scoreForTenthFrame()
+                calculateScore()
                 bowlingGameModel.rollCount += 1
                 if (rollOne != 10){
                     if (rollTwo + rollOne < 10){
@@ -115,17 +114,13 @@ class BowlingGame{
                 } else if (rollThree == 10 && rollTwo == 10){
                     bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
                 }
-//                scoreForTenthFrame()
+                calculateScore()
                 bowlingGameModel.rollCount += 1
                 break
             default:
                 break
             }
         } else {
-//            if (bowlingGameModel.rollCount < 2){
-//                calculateScore()
-//            }
-            calculateScore()
             finishGame()
         }
 
@@ -195,37 +190,63 @@ class BowlingGame{
     
     func scoreForTenthFrame(){
         if let previousFrame = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-1]{
+            if (bowlingGameModel.rollCount == 2){
+                currentFrame = [rollOne, rollTwo, rollThree, rollOne+rollTwo+rollThree + previousFrame[2]]
+                bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
+                bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
+                return
+            }
             currentFrame = [rollOne, rollTwo, rollThree, rollOne+rollTwo+rollThree + previousFrame[2]]
             if (wasStrike()){
                 if (wasContiniousStrike()){
-                    if let previousTwoFrames = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-2]{
-                        let appendedPreviousTwoFrames = [previousTwoFrames[0], previousTwoFrames[1], previousTwoFrames[2] + currentFrame[0]]
-                        bowlingGameModel.frames[bowlingGameModel.frameCount-2] = appendedPreviousTwoFrames
-                        let appendedPreviousFrame = [previousFrame[0], previousFrame[1], appendedPreviousTwoFrames[2] + previousFrame[0] + currentFrame[0] + currentFrame[1]]
+                    if (currentFrame[1] == 0){
+                        if let twoPreviousFrames = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-2]{
+                            let appendedTwoPreviousFrames = [twoPreviousFrames[0], twoPreviousFrames[1], twoPreviousFrames[2] + currentFrame[0]]
+                            bowlingGameModel.frames[bowlingGameModel.frameCount-2] = appendedTwoPreviousFrames
+                            let appendedPreviousFrame = [previousFrame[0], previousFrame[1], appendedTwoPreviousFrames[2] + previousFrame[0] + currentFrame[0]]
+                            bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
+                            let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0]]
+                            bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
+                            bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
+                        }
+                    } else {
+                        let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[1]]
                         bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
-                        let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1] + currentFrame[2]]
+                        let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
                         bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
                         bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
                     }
                 } else {
-                    let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0] + currentFrame[1]]
-                    bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
-                    let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1] + currentFrame[2]]
-                    bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
-                    bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
+                    if (bowlingGameModel.rollCount == 0){
+                        let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
+                        bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
+                        bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
+                        bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
+                    } else {
+                        let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[1]]
+                        bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
+                        let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
+                        bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
+                        bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
+                    }
+                    
                 }
-            } else if (wasSpare()) {
+            } else if (wasSpare() && bowlingGameModel.rollCount == 0){
                 let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
-                let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1] + currentFrame[2]]
+                let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
                 bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
             } else {
-                let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], previousFrame[2] + currentFrame[0] + currentFrame[1] + currentFrame[2]]
-                bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
+                bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
                 bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
             }
+        } else {
+            currentFrame = [rollOne, rollTwo, rollThree, rollOne+rollTwo+rollThree]
+            bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
+            bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
         }
+
     }
     
     func wasStrike() -> Bool {
