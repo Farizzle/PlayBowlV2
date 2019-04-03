@@ -25,19 +25,6 @@ class ScoreboardCollectionView: NSObject, UICollectionViewDelegate, UICollection
             self.scoreBoardValues = scoreBoard
             withCollectionView.reloadData()
             }.disposed(by: bag)
-        passedVM.bowlingGameModel.specialThrow.subscribe{ (event) in
-            guard let specialThrowCondition = event.element else {return}
-            switch specialThrowCondition{
-            case 0 :
-                print("Strike")
-                break
-            case 1 :
-                print("Spare")
-                break
-            default:
-                break
-            }
-            }.disposed(by: bag)
         scoreBoardValues = passedVM.bowlingGameModel.frames
     }
     

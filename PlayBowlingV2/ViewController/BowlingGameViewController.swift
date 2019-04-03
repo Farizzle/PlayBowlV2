@@ -17,6 +17,7 @@ class BowlingGameViewController: UIViewController {
     @IBOutlet weak var saveStateLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     private var hasGameSaved = false
+    private var originalFrameXPosition = CGFloat()
     
     // Player One
     private var bowlingGame = BowlingGame.init()
@@ -24,16 +25,23 @@ class BowlingGameViewController: UIViewController {
     @IBOutlet weak var scoreBoard: UICollectionView!
     @IBOutlet weak var playerOneRoll: UIButton!
     private var playerOneFinished = false
-
+    @IBOutlet weak var playerOneThrowLabel: UILabel!
+    
     // Player Two
     private var bowlingGameTwo = BowlingGame.init()
     private var bowlingGameViewModelTwo: BowlingGameViewModel?
     @IBOutlet weak var secondPlayerScoreBoard: UICollectionView!
     @IBOutlet weak var playerTwoRoll: UIButton!
     private var playerTwoFinished = false
+    @IBOutlet weak var playerTwoThrowLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Get reference of starting label position
+        originalFrameXPosition = playerOneThrowLabel.frame.origin.x
+        // Move Special Throw labels to starting position for animation
+        hideSpecialThrowAnimationLabels()
+        // Setup the game
         setupGame()
     }
     
@@ -54,6 +62,21 @@ class BowlingGameViewController: UIViewController {
             self.switchPlayer(isSecondPlayersTurn: true)
         }.disposed(by: bag)
         
+        // Listens for special throws from Player One
+        initializedViewModel.bowlingGameModel.specialThrow.subscribe{ (event) in
+            guard let specialThrowCondition = event.element else {return}
+            switch specialThrowCondition{
+            case 0 :
+                self.strikeAnimation(wasPlayerOne: true)
+                break
+            case 1 :
+                self.spareAnimation(wasPlayerOne: true)
+                break
+            default:
+                break
+            }
+        }.disposed(by: bag)
+
         // Switches to player one once player ones frame is complete
         initializedViewModelTwo.bowlingGameModel.frameComplete.subscribe{ (event) in
             guard let gameInProgress = event.element else {return}
@@ -63,6 +86,22 @@ class BowlingGameViewController: UIViewController {
                 self.enableSaveGame()
             }
         }.disposed(by: bag)
+        
+        // Listens for special throws from Player Two
+        initializedViewModelTwo.bowlingGameModel.specialThrow.subscribe{ (event) in
+            guard let specialThrowCondition = event.element else {return}
+            switch specialThrowCondition{
+            case 0 :
+                self.strikeAnimation(wasPlayerOne: false)
+                break
+            case 1 :
+                self.spareAnimation(wasPlayerOne: false)
+                break
+            default:
+                break
+            }
+            }.disposed(by: bag)
+
     }
     
     @IBAction func rollTheBall(){
@@ -127,6 +166,54 @@ class BowlingGameViewController: UIViewController {
         } else {
             saveStateLabel.text = "Game already saved!"
         }
+    }
+    
+    private func strikeAnimation(wasPlayerOne: Bool){
+        hideSpecialThrowAnimationLabels()
+        if (wasPlayerOne){
+            playerOneThrowLabel.text = "STRIKE!"
+            UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
+                self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
+            }, completion: nil)
+        } else {
+            playerTwoThrowLabel.text = "STRIKE!"
+            UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
+                self.takeLabelToOtherSide(label: self.playerTwoThrowLabel)
+            }, completion: nil)
+        }
+    }
+    
+    private func spareAnimation(wasPlayerOne: Bool){
+        hideSpecialThrowAnimationLabels()
+        if (wasPlayerOne){
+            playerOneThrowLabel.text = "SPARE"
+            UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
+                self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
+            }, completion: nil)
+        } else {
+            playerTwoThrowLabel.text = "SPARE"
+            UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
+                self.takeLabelToOtherSide(label: self.playerTwoThrowLabel)
+            }, completion: nil)
+        }
+    }
+    
+    private func hideSpecialThrowAnimationLabels(){
+        playerOneThrowLabel.frame = CGRect.init(x: self.view.frame.size.width + 10,
+                                                y: playerOneThrowLabel.frame.origin.y,
+                                                width: playerOneThrowLabel.frame.size.width,
+                                                height: playerOneThrowLabel.frame.height)
+        playerTwoThrowLabel.frame = CGRect.init(x: self.view.frame.size.width + 10,
+                                                y: playerTwoThrowLabel.frame.origin.y,
+                                                width: playerTwoThrowLabel.frame.size.width,
+                                                height: playerTwoThrowLabel.frame.height)
+    }
+    
+    private func takeLabelToOtherSide(label: UIView){
+        label.frame = CGRect.init(x: self.view.frame.origin.x - label.frame.size.width,
+                                                y: label.frame.origin.y,
+                                                width: label.frame.size.width,
+                                                height: label.frame.height)
     }
 }
 
