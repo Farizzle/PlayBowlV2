@@ -48,33 +48,79 @@ class ScoreboardCollectionView: NSObject, UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (indexPath.row < 9){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StandardFrameCell", for: indexPath) as! StandardFrameCell
-            guard
-                let rollOneValue = scoreBoardValues[indexPath.row].first,
-                let frameScore = scoreBoardValues[indexPath.row].last
-                else {
-                    return cell
-            }
-            cell.frameLabel.text = "Frame \(indexPath.row+1)"
-            cell.rollOne.text = "\(rollOneValue)"
-            cell.rollTwo.text = "\(scoreBoardValues[indexPath.row][1])"
-            cell.frameScore.text = "\(frameScore)"
-            
-            return cell
+            return handleStandardFrameCells(cell: cell, indexPath: indexPath)
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TenthFrameCell", for: indexPath) as! TenthFrameCell
-            guard
-                let rollOneValue = scoreBoardValues[indexPath.row].first,
-                let frameScore = scoreBoardValues[indexPath.row].last
-                else {
-                    return cell
-            }
-            cell.frameLabel.text = "Frame \(indexPath.row+1)"
-            cell.rollOne.text = "\(rollOneValue)"
-            cell.rollTwo.text = "\(scoreBoardValues[indexPath.row][1])"
-            cell.rollThree.text = "\(scoreBoardValues[indexPath.row][2])"
-            cell.frameScore.text = "\(frameScore)"
-            
-            return cell
+            return handleTenthFrameCell(cell: cell, indexPath: indexPath)
         }
+    }
+    
+    private func handleStandardFrameCells(cell: StandardFrameCell, indexPath: IndexPath) -> StandardFrameCell{
+        guard
+            let rollOneValue = scoreBoardValues[indexPath.row].first,
+            let frameScore = scoreBoardValues[indexPath.row].last
+            else {
+                return cell
+        }
+        cell.frameLabel.text = "Frame \(indexPath.row+1)"
+        
+        if (rollOneValue == 10){
+            cell.rollOne.text = "X"
+        } else {
+            cell.rollOne.text = "\(rollOneValue)"
+        }
+        
+        let rollTwoValue = scoreBoardValues[indexPath.row][1]
+        if (rollOneValue != 10){
+            if (rollOneValue+rollTwoValue == 10){
+                cell.rollTwo.text = "/"
+            } else {
+                cell.rollTwo.text = "\(scoreBoardValues[indexPath.row][1])"
+            }
+        } else {
+            cell.rollTwo.text = "-"
+        }
+        
+        cell.frameScore.text = "\(frameScore)"
+        
+        return cell
+    }
+    
+    private func handleTenthFrameCell(cell: TenthFrameCell, indexPath: IndexPath) -> TenthFrameCell{
+        guard
+            let rollOneValue = scoreBoardValues[indexPath.row].first,
+            let frameScore = scoreBoardValues[indexPath.row].last
+            else {
+                return cell
+        }
+        cell.frameLabel.text = "Frame \(indexPath.row+1)"
+        if (rollOneValue == 10){
+            cell.rollOne.text = "X"
+        } else {
+            cell.rollOne.text = "\(rollOneValue)"
+        }
+        
+        let rollTwoValue = scoreBoardValues[indexPath.row][1]
+        
+        if (rollTwoValue == 10){
+            cell.rollTwo.text = "X"
+        } else if (rollOneValue != 10 && (rollOneValue + rollTwoValue == 10)){
+            cell.rollTwo.text = "/"
+        } else {
+            cell.rollTwo.text = "\(rollTwoValue)"
+        }
+        
+        let rollThreeValue = scoreBoardValues[indexPath.row][2]
+        
+        if (rollThreeValue == 10){
+            cell.rollThree.text = "X"
+        } else if (rollTwoValue != 10 && (rollTwoValue + rollThreeValue == 10)){
+            cell.rollThree.text = "/"
+        } else {
+            cell.rollThree.text = "\(rollThreeValue)"
+        }
+        
+        cell.frameScore.text = "\(frameScore)"
+        return cell
     }
 }
