@@ -16,12 +16,12 @@ class BowlingGameModel {
     let tenthFrameMaxRolls = 2
     
     var framesSubject = PublishSubject<[[Int]]>()
+    var specialThrow = PublishSubject<Int>()
+    var frameComplete = PublishSubject<Bool>()
     var rollCount = 0
     var frames = [[0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0,0]]
 
     var standardFrame = [0,0,0]
-
-    var specialThrow = PublishSubject<Int>()
     
     enum specialThrowCases : Int {
         case Strike = 0
