@@ -23,27 +23,32 @@ class BowlingGame{
     }
     
     func finishGame(){
-        bowlingGameModel.frameCount = bowlingGameModel.totalFrames + 1
+        bowlingGameModel.frameCount = bowlingGameModel.frameCount + 1
         print("Game Finished")
     }
     
     func rollBall() {
+        // From 1-9 roll for a standard frame (Max 2 throws)
         if (bowlingGameModel.frameCount < bowlingGameModel.totalFrames-1) {
             rollBallStandardFrame()
         } else {
+            // Frame 10 roll for a frame where potentially (Max 3 throws)
             rollBallTenthFrame()
         }
     }
     
     func cleanUpRolls(){
+        // Reset rolls after they've been stored into a frame object
         rollOne = 0
         rollTwo = 0
         rollThree = 0
     }
     
     func specialThrowConditionStandardFrame(){
+        // Check if roll one was a strike
         if (rollOne == 10){
             bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+            // Check if roll two resulted in a spare
         } else if ((rollOne + rollTwo == 10) && rollOne != 10){
             bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
         }
@@ -51,20 +56,25 @@ class BowlingGame{
     
     func rollBallStandardFrame(){
         if (!firstThrow){
+            // Roll second ball and complete frame
             rollTwo = Int.random(in: 0...(10-rollOne))
             specialThrowConditionStandardFrame()
             calculateScore()
             cleanUpRolls()
             bowlingGameModel.frameCount += 1
+            bowlingGameModel.frameComplete.onNext(true)
             cleanUpRolls()
             firstThrow = true
         } else {
+            // Roll first ball
             rollOne = Int.random(in: 0...10)
             specialThrowConditionStandardFrame()
             calculateScore()
             if (rollOne == 10){
+                // Check if roll was a strike, if so complete frame
                 firstThrow = true
                 bowlingGameModel.frameCount += 1
+                bowlingGameModel.frameComplete.onNext(true)
                 cleanUpRolls()
             } else {
                 firstThrow = false
@@ -73,18 +83,22 @@ class BowlingGame{
     }
     
     func rollBallTenthFrame(){
-        if (bowlingGameModel.rollCount < bowlingGameModel.tenthFrameMaxRolls+1){
+        if (bowlingGameModel.rollCount <= bowlingGameModel.tenthFrameMaxRolls){
             switch (bowlingGameModel.rollCount){
             case 0:
+                // Roll first ball of tenth frame and increase rollcount
                 rollOne = Int.random(in: 0...10)
                 print(rollOne)
                 if (rollOne == 10){
                     bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
                 }
+                firstThrow = true
                 calculateScore()
+                firstThrow = false
                 bowlingGameModel.rollCount += 1
                 break
             case 1:
+                // Roll second ball of tenth frame and increase rollcount
                 if (rollOne < 10){
                     rollTwo = Int.random(in: 0...(10-rollOne))
                 } else {
@@ -99,11 +113,14 @@ class BowlingGame{
                 bowlingGameModel.rollCount += 1
                 if (rollOne != 10){
                     if (rollTwo + rollOne < 10){
+                        // If roll one and two didn't produce a spare, or were not strikes, complete this frame - game is now finished
+                        bowlingGameModel.frameComplete.onNext(false)
                         bowlingGameModel.rollCount += 1
                     }
                 }
                 break
             case 2:
+                // If criteria met from roll one and two, roll the third and final ball - game is now finished.
                 if (rollTwo < 10){
                     rollThree = Int.random(in: 0...(10-rollTwo))
                 } else {
@@ -115,6 +132,8 @@ class BowlingGame{
                     bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
                 }
                 calculateScore()
+                // Let VC know the game is finished
+                bowlingGameModel.frameComplete.onNext(false)
                 bowlingGameModel.rollCount += 1
                 break
             default:
@@ -128,18 +147,24 @@ class BowlingGame{
     
     func calculateScore() {
         if (bowlingGameModel.frameCount < 9){
+            // From frame 1-9 consider the scoring to only account for a frame (Max 2 throws)
             scoreForStandardFrames()
         } else {
+            // For frame 10 consider the scoring for a frame which potentially (Max 3 throws)
             scoreForTenthFrame()
         }
     }
     
     func scoreForStandardFrames(){
+        // Obtain a reference from the previous frame incase it needs updating
         if let previousFrame = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-1]{
             currentFrame = [rollOne, rollTwo, rollOne+rollTwo + previousFrame[2]]
             if (wasStrike()){
+                // Check if previous frame was a strike
                 if (wasContiniousStrike()){
+                    // Check if previous frame, and the one prior were both strikes
                     if (currentFrame[1] == 0){
+                        // Update two frames behind with the second throw (if previous was also a strike)
                         if let twoPreviousFrames = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-2]{
                             let appendedTwoPreviousFrames = [twoPreviousFrames[0], twoPreviousFrames[1], twoPreviousFrames[2] + currentFrame[0]]
                             bowlingGameModel.frames[bowlingGameModel.frameCount-2] = appendedTwoPreviousFrames
@@ -158,11 +183,13 @@ class BowlingGame{
                     }
                 } else {
                     if (firstThrow){
+                        // If two frames behind was a strike update with first throw of current frame
                         let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
                         bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
                         bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
                         bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
                     } else {
+                        // If two frames behind was a strike update with second throw of current frame
                         let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[1]]
                         bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
                         let appendedCurrentFrame = [currentFrame[0], currentFrame[1], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
@@ -172,16 +199,19 @@ class BowlingGame{
                     
                 }
             } else if (wasSpare() && firstThrow){
+                // Check if previous frame was a spare, so update it with the first throw of current frame
                 let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
                 let appendedCurrentFrame = [currentFrame[0], currentFrame[1], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount] = appendedCurrentFrame
                 bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
             } else {
+                // Update current frame with the secondary throw
                 bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
                 bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
             }
         } else {
+            // Standard previous frame, so just update current frame with roll one and two
             currentFrame = [rollOne, rollTwo, rollOne+rollTwo]
             bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
             bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
@@ -189,8 +219,10 @@ class BowlingGame{
     }
     
     func scoreForTenthFrame(){
+        // Obtain a reference from the previous frame incase it needs updating
         if let previousFrame = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-1]{
             if (bowlingGameModel.rollCount == 2){
+                // If we're on the third throw of the tenth frame, just update the current frame with the total
                 currentFrame = [rollOne, rollTwo, rollThree, rollOne+rollTwo+rollThree + previousFrame[2]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
                 bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
@@ -198,6 +230,7 @@ class BowlingGame{
             }
             currentFrame = [rollOne, rollTwo, rollThree, rollOne+rollTwo+rollThree + previousFrame[2]]
             if (wasStrike()){
+                // Check if previous frame was a strike
                 if (wasContiniousStrike()){
                     if (currentFrame[1] == 0){
                         if let twoPreviousFrames = bowlingGameModel.frames[safe: bowlingGameModel.frameCount-2]{
@@ -217,7 +250,7 @@ class BowlingGame{
                         bowlingGameModel.framesSubject.onNext(bowlingGameModel.frames)
                     }
                 } else {
-                    if (bowlingGameModel.rollCount == 0){
+                    if (firstThrow){
                         let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
                         bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
                         bowlingGameModel.frames[bowlingGameModel.frameCount] = currentFrame
@@ -231,7 +264,7 @@ class BowlingGame{
                     }
                     
                 }
-            } else if (wasSpare() && bowlingGameModel.rollCount == 0){
+            } else if (wasSpare() && firstThrow){
                 let appendedPreviousFrame = [previousFrame[0], previousFrame[1], previousFrame[2] + currentFrame[0]]
                 bowlingGameModel.frames[bowlingGameModel.frameCount-1] = appendedPreviousFrame
                 let appendedCurrentFrame = [currentFrame[0], currentFrame[1], currentFrame[2], appendedPreviousFrame[2] + currentFrame[0] + currentFrame[1]]
