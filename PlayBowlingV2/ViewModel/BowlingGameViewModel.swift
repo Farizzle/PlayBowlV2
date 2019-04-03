@@ -11,17 +11,22 @@ import Foundation
 class BowlingGameViewModel: NSObject {
     
     var bowlingGameModel = BowlingGameModel()
-
+    
+    // Setup viewModel with reference to a Bowling Game data source instance
     init(withBowlingGame: BowlingGame) {
         bowlingGameModel = withBowlingGame.bowlingGameModel
     }
     
     func getTotalScore() -> Int {
-        guard let finalFrameScore = bowlingGameModel.frames.last?.last else {
-            print("Game not finished")
-            return 0
+        if let finalFrameScore = bowlingGameModel.frames.last?.last{
+            if (finalFrameScore == 0){
+                print("Game not finished")
+                return 0
+            } else {
+                return finalFrameScore
+            }
         }
-        return finalFrameScore
+        return 0
     }
     
     func getCurrentScoreBoard() -> [[Int]] {
