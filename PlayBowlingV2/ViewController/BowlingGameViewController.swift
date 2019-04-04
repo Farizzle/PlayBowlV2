@@ -17,7 +17,6 @@ class BowlingGameViewController: UIViewController {
     @IBOutlet weak var saveStateLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     private var hasGameSaved = false
-    private var originalFrameXPosition = CGFloat()
     
     // Player One
     private var bowlingGame = BowlingGame.init()
@@ -37,8 +36,6 @@ class BowlingGameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Get reference of starting label position
-        originalFrameXPosition = playerOneThrowLabel.frame.origin.x
         // Move Special Throw labels to starting position for animation
         hideSpecialThrowAnimationLabels()
         // Setup the game
@@ -83,6 +80,7 @@ class BowlingGameViewController: UIViewController {
             if (gameInProgress){
                 self.switchPlayer(isSecondPlayersTurn: false)
             } else {
+                // Once Player Two has completed the tenth frame, enable the game to be saved
                 self.enableSaveGame()
             }
         }.disposed(by: bag)
@@ -176,9 +174,9 @@ class BowlingGameViewController: UIViewController {
                 self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
             }, completion: nil)
         } else {
-            playerTwoThrowLabel.text = "STRIKE!"
+            playerOneThrowLabel.text = "SPARE"
             UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
-                self.takeLabelToOtherSide(label: self.playerTwoThrowLabel)
+                self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
             }, completion: nil)
         }
     }
