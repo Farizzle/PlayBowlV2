@@ -28,8 +28,14 @@ class ScoreboardCollectionView: NSObject, UICollectionViewDelegate, UICollection
         scoreBoardValues = passedVM.bowlingGameModel.frames
     }
     
+    func setupAndBindForHistory(withObtainedScores: [[Int]], withCollectionView: UICollectionView){
+        self.scoreBoardValues = withObtainedScores
+        withCollectionView.delegate = self
+        withCollectionView.dataSource = self
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return scoreBoardValues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

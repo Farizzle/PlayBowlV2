@@ -13,9 +13,11 @@ import CoreData
 class MatchHistoryCollectionView : NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var loadedData = [NSManagedObject]()
+    private var viewController = UIViewController()
     
-    func setupAndBind(withCollectionView: UICollectionView){
+    func setupAndBind(withViewController: UIViewController, withCollectionView: UICollectionView){
         loadedData = CoreDataHelper.loadCoreData(entityName: "Scoreboards")
+        viewController = withViewController
         withCollectionView.delegate = self
         withCollectionView.dataSource = self
     }
@@ -43,6 +45,27 @@ class MatchHistoryCollectionView : NSObject, UICollectionViewDelegate, UICollect
         }
 
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let playerOneScore = loadedData[indexPath.row].value(forKey: "playerOneScore") as! Data
+        let playerTwoScore = loadedData[indexPath.row].value(forKey: "playerTwoScore") as! Data
+        let matchDate = loadedData[indexPath.row].value(forKey: "matchDate") as! Date
+        
+        do {
+            let playerOneScoreConverted = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(playerOneScore) as! [[Int]]
+            let playerTwoScoreConverted = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(playerTwoScore) as! [[Int]]
+            
+            let historyDetails = viewController.storyboard?.instantiateViewController(withIdentifier: "MatchHistoryDetailViewController") as! MatchHistoryDetailViewController
+            
+            historyDetails.matchDate = matchDate.toString(withFormat: "yyyy-MM-dd")
+            historyDetails.playerOneScore = playerOneScoreConverted
+            historyDetails.playerTwoScore = playerTwoScoreConverted
+            
+            viewController.navigationController?.pushViewController(historyDetails, animated: true)
+        } catch {
+            print("Failed converting scores to Int array")
+        }
+
     }
     
     

@@ -17,7 +17,7 @@ class MatchHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        matchHistoryCollectionViewController.setupAndBind(withCollectionView: matchHistoryCollectionView)
+        matchHistoryCollectionViewController.setupAndBind(withViewController: self, withCollectionView: matchHistoryCollectionView)
     }
 
 }
