@@ -25,6 +25,7 @@
 		EF9851062255322C00BE049B /* MatchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9851052255322C00BE049B /* MatchHistoryCell.swift */; };
 		EF9851082255329F00BE049B /* MatchHistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */; };
 		EF98510A22553FCB00BE049B /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98510922553FCB00BE049B /* HomePageViewController.swift */; };
+		EF98510C2255E25100BE049B /* MatchHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98510B2255E25100BE049B /* MatchHistoryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		EF9851052255322C00BE049B /* MatchHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryCell.swift; sourceTree = "<group>"; };
 		EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryCollectionView.swift; sourceTree = "<group>"; };
 		EF98510922553FCB00BE049B /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		EF98510B2255E25100BE049B /* MatchHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				EF9850D0224F751300BE049B /* BowlingGameViewController.swift */,
 				EF985102225497F900BE049B /* MatchHistoryViewController.swift */,
 				EF98510922553FCB00BE049B /* HomePageViewController.swift */,
+				EF98510B2255E25100BE049B /* MatchHistoryDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				EF9850FE2251F9C500BE049B /* ScoreboardCollectionView.swift in Sources */,
 				EF98510A22553FCB00BE049B /* HomePageViewController.swift in Sources */,
 				EF9851062255322C00BE049B /* MatchHistoryCell.swift in Sources */,
+				EF98510C2255E25100BE049B /* MatchHistoryDetailViewController.swift in Sources */,
 				EF9850FC225152A400BE049B /* TenthFrameCell.swift in Sources */,
 				EF9850D7224F751300BE049B /* PlayBowlingV2.xcdatamodeld in Sources */,
 				EF9851082255329F00BE049B /* MatchHistoryCollectionView.swift in Sources */,
