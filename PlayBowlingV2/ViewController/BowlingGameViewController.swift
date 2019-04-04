@@ -174,9 +174,9 @@ class BowlingGameViewController: UIViewController {
                 self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
             }, completion: nil)
         } else {
-            playerOneThrowLabel.text = "SPARE"
+            playerTwoThrowLabel.text = "STRIKE!"
             UIView.animate(withDuration: 3.0, delay: 0, options: [.curveEaseIn], animations: {
-                self.takeLabelToOtherSide(label: self.playerOneThrowLabel)
+                self.takeLabelToOtherSide(label: self.playerTwoThrowLabel)
             }, completion: nil)
         }
     }

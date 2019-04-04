@@ -154,6 +154,8 @@
 		EF9850F622514AEF00BE049B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
+				EF9850D2224F751300BE049B /* Main.storyboard */,
 				EF9850D5224F751300BE049B /* PlayBowlingV2.xcdatamodeld */,
 				EF9850CE224F751300BE049B /* AppDelegate.swift */,
 				EF9850DD224F751400BE049B /* Info.plist */,
@@ -164,11 +166,8 @@
 		EF9850F722514B0700BE049B /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				EF98510D225696E800BE049B /* CollectionViews */,
 				EF9851042255321000BE049B /* CollectionCells */,
-				EF9850DA224F751400BE049B /* LaunchScreen.storyboard */,
-				EF9850D2224F751300BE049B /* Main.storyboard */,
-				EF9850FD2251F9C500BE049B /* ScoreboardCollectionView.swift */,
-				EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -197,6 +196,15 @@
 				EF9851052255322C00BE049B /* MatchHistoryCell.swift */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		EF98510D225696E800BE049B /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				EF9850FD2251F9C500BE049B /* ScoreboardCollectionView.swift */,
+				EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */,
+			);
+			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
