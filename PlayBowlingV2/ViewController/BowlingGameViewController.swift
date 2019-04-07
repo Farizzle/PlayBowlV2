@@ -198,11 +198,11 @@ class BowlingGameViewController: UIViewController {
     
     private func hideSpecialThrowAnimationLabels(){
         playerOneThrowLabel.frame = CGRect.init(x: self.view.frame.size.width + 10,
-                                                y: playerOneThrowLabel.frame.origin.y,
+                                                y: scoreBoard.frame.origin.y + scoreBoard.frame.size.height + 8,
                                                 width: playerOneThrowLabel.frame.size.width,
                                                 height: playerOneThrowLabel.frame.height)
         playerTwoThrowLabel.frame = CGRect.init(x: self.view.frame.size.width + 10,
-                                                y: playerTwoThrowLabel.frame.origin.y,
+                                                y: secondPlayerScoreBoard.frame.origin.y + secondPlayerScoreBoard.frame.size.height + 8,
                                                 width: playerTwoThrowLabel.frame.size.width,
                                                 height: playerTwoThrowLabel.frame.height)
     }
