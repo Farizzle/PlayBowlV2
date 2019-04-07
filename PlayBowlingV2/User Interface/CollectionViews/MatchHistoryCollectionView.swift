@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class MatchHistoryCollectionView : NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class MatchHistoryCollectionView : NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private var loadedData = [NSManagedObject]()
     private var viewController = UIViewController()
@@ -68,5 +68,10 @@ class MatchHistoryCollectionView : NSObject, UICollectionViewDelegate, UICollect
 
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: viewController.view.frame.size.width, height: 120)
+    }
+
+
     
 }
