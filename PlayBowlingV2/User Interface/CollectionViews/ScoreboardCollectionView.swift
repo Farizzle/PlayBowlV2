@@ -116,4 +116,10 @@ class ScoreboardCollectionView: NSObject, UICollectionViewDelegate, UICollection
         cell.frameScore.text = "\(frameScore)"
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+//        let numberOfCell: CGFloat = 10   //you need to give a type as CGFloat
+//        let cellWidth = UIScreen.main.bounds.size.width / numberOfCell
+//        return CGSize(width: cellWidth, height: 50)
+//    }
 }
