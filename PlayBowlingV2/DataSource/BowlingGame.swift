@@ -82,6 +82,7 @@ class BowlingGame{
         }
     }
     
+    
     func rollBallTenthFrame(){
         if (bowlingGameModel.rollCount <= bowlingGameModel.tenthFrameMaxRolls){
             switch (bowlingGameModel.rollCount){
@@ -142,7 +143,6 @@ class BowlingGame{
         } else {
             finishGame()
         }
-
     }
     
     func calculateScore() {
@@ -310,5 +310,130 @@ class BowlingGame{
             return false
         }
     }
+    
+    
+    // TEST METHODS
+    // Testable version of rollBall
+    func testRollBall(firstRoll: Int, secondRoll: Int?, thirdRoll: Int?) {
+        // From 1-9 roll for a standard frame (Max 2 throws)
+        if (bowlingGameModel.frameCount < bowlingGameModel.totalFrames-1) {
+            testRollBallStandardFrame(firstRoll: firstRoll, secondRoll: secondRoll)
+        } else {
+            // Frame 10 roll for a frame where potentially (Max 3 throws)
+            testRollBallTenthFrame(firstRoll: firstRoll, secondRoll: secondRoll, thirdRoll: thirdRoll)
+        }
+    }
+    
+    // Testable version of standardFrame
+    func testRollBallStandardFrame(firstRoll: Int, secondRoll: Int?){
+        if let secondRollAvailable = secondRoll {
+            if (firstRoll > 10 || secondRollAvailable > 10){
+                return
+            }
+            if ((firstRoll != 10) && (firstRoll + secondRollAvailable > 10)){
+                return
+            }
+            if (!firstThrow){
+                // Roll second ball and complete frame
+                rollTwo = secondRollAvailable
+                specialThrowConditionStandardFrame()
+                calculateScore()
+                cleanUpRolls()
+                bowlingGameModel.frameCount += 1
+                bowlingGameModel.frameComplete.onNext(true)
+                cleanUpRolls()
+                firstThrow = true
+            } else {
+                // Roll first ball
+                rollOne = firstRoll
+                specialThrowConditionStandardFrame()
+                calculateScore()
+                if (rollOne == 10){
+                    // Check if roll was a strike, if so complete frame
+                    firstThrow = true
+                    bowlingGameModel.frameCount += 1
+                    bowlingGameModel.frameComplete.onNext(true)
+                    cleanUpRolls()
+                } else {
+                    firstThrow = false
+                }
+            }
+        }
+    }
+
+    // Testable version of tenth frame
+    func testRollBallTenthFrame(firstRoll: Int, secondRoll: Int?, thirdRoll: Int?){
+        if let  secondRollAvailable = secondRoll,
+           let  thirdRollAvailable = thirdRoll {
+            if (firstRoll > 10 || secondRollAvailable > 10 || thirdRollAvailable > 10){
+                return
+            }
+            if ((firstRoll != 10) && (firstRoll + secondRollAvailable > 10)){
+                return
+            } else if ((secondRollAvailable != 10) && (thirdRollAvailable != 10) && (secondRollAvailable + thirdRollAvailable > 10)){
+                return
+            }
+            if (bowlingGameModel.rollCount <= bowlingGameModel.tenthFrameMaxRolls){
+                switch (bowlingGameModel.rollCount){
+                case 0:
+                    // Roll first ball of tenth frame and increase rollcount
+                    rollOne = firstRoll
+                    print(rollOne)
+                    if (rollOne == 10){
+                        bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                    }
+                    firstThrow = true
+                    calculateScore()
+                    firstThrow = false
+                    bowlingGameModel.rollCount += 1
+                    break
+                case 1:
+                    // Roll second ball of tenth frame and increase rollcount
+                    if (rollOne < 10){
+                        rollTwo = secondRollAvailable
+                    } else {
+                        rollTwo = secondRollAvailable
+                    }
+                    if (rollOne + rollTwo == 10 && rollOne != 10){
+                        bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
+                    } else if (rollTwo == 10 && rollOne == 10){
+                        bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                    }
+                    calculateScore()
+                    bowlingGameModel.rollCount += 1
+                    if (rollOne != 10){
+                        if (rollTwo + rollOne < 10){
+                            // If roll one and two didn't produce a spare, or were not strikes, complete this frame - game is now finished
+                            bowlingGameModel.frameComplete.onNext(false)
+                            bowlingGameModel.rollCount += 1
+                        }
+                    }
+                    break
+                case 2:
+                    // If criteria met from roll one and two, roll the third and final ball - game is now finished.
+                    if (rollTwo < 10){
+                        rollThree = thirdRollAvailable
+                    } else {
+                        rollThree = thirdRollAvailable
+                    }
+                    if (rollTwo + rollThree == 10 && rollTwo != 10){
+                        bowlingGameModel.specialThrow.onNext(bowlingGameModel.spareCondition())
+                    } else if (rollThree == 10 && rollTwo == 10){
+                        bowlingGameModel.specialThrow.onNext(bowlingGameModel.strikeCondition())
+                    }
+                    calculateScore()
+                    // Let VC know the game is finished
+                    bowlingGameModel.frameComplete.onNext(false)
+                    bowlingGameModel.rollCount += 1
+                    break
+                default:
+                    break
+                }
+            } else {
+                finishGame()
+            }
+        }
+    }
+    
     
 }
