@@ -26,7 +26,18 @@
 		EF9851082255329F00BE049B /* MatchHistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */; };
 		EF98510A22553FCB00BE049B /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98510922553FCB00BE049B /* HomePageViewController.swift */; };
 		EF98510C2255E25100BE049B /* MatchHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98510B2255E25100BE049B /* MatchHistoryDetailViewController.swift */; };
+		EF9BBC3C225D406C00552EBF /* PlayBowlingV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9BBC3B225D406C00552EBF /* PlayBowlingV2Tests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF9BBC3E225D406C00552EBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF9850C3224F751300BE049B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF9850CA224F751300BE049B;
+			remoteInfo = PlayBowlingV2;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7D2DD313C298E8D6632F5604 /* Pods-PlayBowlingV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBowlingV2.release.xcconfig"; path = "Target Support Files/Pods-PlayBowlingV2/Pods-PlayBowlingV2.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +63,9 @@
 		EF9851072255329F00BE049B /* MatchHistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryCollectionView.swift; sourceTree = "<group>"; };
 		EF98510922553FCB00BE049B /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		EF98510B2255E25100BE049B /* MatchHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryDetailViewController.swift; sourceTree = "<group>"; };
+		EF9BBC39225D406C00552EBF /* PlayBowlingV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayBowlingV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF9BBC3B225D406C00552EBF /* PlayBowlingV2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBowlingV2Tests.swift; sourceTree = "<group>"; };
+		EF9BBC3D225D406C00552EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				44E6780E89CD88344D639E57 /* Pods_PlayBowlingV2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF9BBC36225D406C00552EBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EF9850CD224F751300BE049B /* PlayBowlingV2 */,
+				EF9BBC3A225D406C00552EBF /* PlayBowlingV2Tests */,
 				EF9850CC224F751300BE049B /* Products */,
 				A90B1CF2782B54C34806AF0B /* Pods */,
 				30795B9C9A0233ADA5D78149 /* Frameworks */,
@@ -97,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				EF9850CB224F751300BE049B /* PlayBowlingV2.app */,
+				EF9BBC39225D406C00552EBF /* PlayBowlingV2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +230,15 @@
 			path = CollectionViews;
 			sourceTree = "<group>";
 		};
+		EF9BBC3A225D406C00552EBF /* PlayBowlingV2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EF9BBC3B225D406C00552EBF /* PlayBowlingV2Tests.swift */,
+				EF9BBC3D225D406C00552EBF /* Info.plist */,
+			);
+			path = PlayBowlingV2Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,6 +261,24 @@
 			productReference = EF9850CB224F751300BE049B /* PlayBowlingV2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EF9BBC38225D406C00552EBF /* PlayBowlingV2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF9BBC40225D406C00552EBF /* Build configuration list for PBXNativeTarget "PlayBowlingV2Tests" */;
+			buildPhases = (
+				EF9BBC35225D406C00552EBF /* Sources */,
+				EF9BBC36225D406C00552EBF /* Frameworks */,
+				EF9BBC37225D406C00552EBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF9BBC3F225D406C00552EBF /* PBXTargetDependency */,
+			);
+			name = PlayBowlingV2Tests;
+			productName = PlayBowlingV2Tests;
+			productReference = EF9BBC39225D406C00552EBF /* PlayBowlingV2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -241,6 +291,10 @@
 				TargetAttributes = {
 					EF9850CA224F751300BE049B = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					EF9BBC38225D406C00552EBF = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = EF9850CA224F751300BE049B;
 					};
 				};
 			};
@@ -258,6 +312,7 @@
 			projectRoot = "";
 			targets = (
 				EF9850CA224F751300BE049B /* PlayBowlingV2 */,
+				EF9BBC38225D406C00552EBF /* PlayBowlingV2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -270,6 +325,13 @@
 				EF9850DC224F751400BE049B /* LaunchScreen.storyboard in Resources */,
 				EF9850D9224F751400BE049B /* Assets.xcassets in Resources */,
 				EF9850D4224F751300BE049B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF9BBC37225D406C00552EBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +411,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF9BBC35225D406C00552EBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9BBC3C225D406C00552EBF /* PlayBowlingV2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF9BBC3F225D406C00552EBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF9850CA224F751300BE049B /* PlayBowlingV2 */;
+			targetProxy = EF9BBC3E225D406C00552EBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EF9850D2224F751300BE049B /* Main.storyboard */ = {
@@ -525,6 +603,46 @@
 			};
 			name = Release;
 		};
+		EF9BBC41225D406C00552EBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P27A23S3XE;
+				INFOPLIST_FILE = PlayBowlingV2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fariszaman.PlayBowlingV2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PlayBowlingV2.app/PlayBowlingV2";
+			};
+			name = Debug;
+		};
+		EF9BBC42225D406C00552EBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P27A23S3XE;
+				INFOPLIST_FILE = PlayBowlingV2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fariszaman.PlayBowlingV2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PlayBowlingV2.app/PlayBowlingV2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,6 +660,15 @@
 			buildConfigurations = (
 				EF9850E1224F751400BE049B /* Debug */,
 				EF9850E2224F751400BE049B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF9BBC40225D406C00552EBF /* Build configuration list for PBXNativeTarget "PlayBowlingV2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF9BBC41225D406C00552EBF /* Debug */,
+				EF9BBC42225D406C00552EBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
