@@ -20,7 +20,7 @@ class PlayBowlingV2Tests: XCTestCase {
 
     func testAllStrikes() {
         setUp()
-        // Roll 11 times throwing all strikes
+        // Complete all 10 frames by throwing all strikes
         for _ in 0...11{
            bowlingGame.testRollBall(firstRoll: 10, secondRoll: 10, thirdRoll: 10)
         }
@@ -35,7 +35,7 @@ class PlayBowlingV2Tests: XCTestCase {
     
     func testAllSpares() {
         setUp()
-        // Roll 22 times throwing all spares (5s)
+        // Roll 21 times throwing all spares (5s)
         for _ in 0...22{
             bowlingGame.testRollBall(firstRoll: 5, secondRoll: 5, thirdRoll: 5)
         }
